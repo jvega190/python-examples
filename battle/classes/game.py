@@ -25,11 +25,6 @@ class Person:
     def generate_damage(self):
         return random.randrange(self.atk_low, self.atk_high)
 
-    def generate_spell_damage(self, i):
-        mg_low = self.magic[i]["damage"] - 5
-        mg_high = self.magic[i]["damage"] + 5
-        return random.randrange(mg_low, mg_high)
-
     def take_damage(self, dmg):
         self.hp -= dmg
         if self.hp < 0:
@@ -56,12 +51,6 @@ class Person:
     def reduce_mp(self, cost):
         self.mp -= cost
 
-    def get_spell_name(self, i):
-        return self.magic[i]["name"]
-
-    def get_spell_mp_cost(self, i):
-        return self.magic[i]["cost"]
-
     def choose_action(self):
         i = 1
         print(bcolors.OKBLUE + "Actions:" + bcolors.ENDC)
@@ -73,5 +62,5 @@ class Person:
         i = 1
         print(bcolors.OKBLUE + "Magic:" + bcolors.ENDC)
         for spell in self.magic:
-            print(str(i) + ":", spell["name"], "(cost:", str(spell["cost"]) + ")")
+            print(str(i) + ":", spell.name, "(cost:", str(spell.cost) + ")")
             i += 1
